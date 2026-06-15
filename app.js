@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 3000;
+require('dotenv').config({ path: __dirname + '/.env' });
 
 app.use(express.json());
 app.use(express.static(__dirname));
@@ -16,3 +17,4 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Mission Control running on port ${PORT}`);
 });
+console.log("JWT CHECK:", process.env.JWT_SECRET);
