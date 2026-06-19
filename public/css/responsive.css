@@ -1,24 +1,314 @@
-@media(max-width:768px){
-
-    .title-box h1{
-        font-size:1.5rem;
+/* Mobile - Small phones (max 480px) */
+@media (max-width: 480px) {
+    .top-bar {
+        height: auto;
+        padding: 8px 12px;
+        flex-direction: column;
+        gap: 8px;
     }
 
-    .question-box{
-        width:90%;
-        padding:20px;
+    .hud-box {
+        min-width: auto;
+        padding: 0 8px;
     }
 
-    .answers{
-        grid-template-columns:1fr;
+    .hud-box h3 {
+        font-size: 0.5rem;
     }
 
-    .alien{
-        font-size:5rem;
+    .hud-box p {
+        font-size: 1rem;
     }
 
-    .earth{
-        font-size:6rem;
+    .title-box h1 {
+        font-size: 1rem;
     }
 
+    .title-box h2 {
+        font-size: 0.6rem;
+    }
+
+    .welcome-user {
+        font-size: 0.6rem;
+    }
+
+    .battle-scene {
+        height: 35vh;
+    }
+
+    #alienShipWrapper {
+        left: 5%;
+        transform: translateY(-50%) scale(0.7);
+    }
+
+    #earthWrapper {
+        right: 5%;
+        transform: translateY(-50%) scale(0.7);
+    }
+
+    #alienCanvas {
+        width: 112px;
+        height: 112px;
+    }
+
+    #earthCanvas {
+        width: 140px;
+        height: 140px;
+    }
+
+    .question-area {
+        height: 65vh;
+        padding: 0 10px;
+    }
+
+    .question-box {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .question-box h2 {
+        font-size: 0.9rem;
+    }
+
+    .question-number {
+        font-size: 0.55rem;
+        padding: 2px 8px;
+    }
+
+    .timer-wrap {
+        gap: 4px;
+    }
+
+    .timer-bar {
+        width: 80px;
+        height: 4px;
+    }
+
+    .timer-text {
+        font-size: 0.65rem;
+    }
+
+    .answers {
+        gap: 8px;
+    }
+
+    .answer-btn {
+        padding: 10px 8px;
+        font-size: 0.75rem;
+    }
+
+    .diff-box {
+        padding: 2rem 1.5rem;
+    }
+
+    .diff-box h1 {
+        font-size: 1.5rem;
+    }
+
+    .diff-box h2 {
+        font-size: 0.8rem;
+    }
+
+    .diff-buttons {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .diff-btn {
+        padding: 12px 24px;
+        font-size: 0.8rem;
+    }
+
+    .modal-box {
+        width: 90%;
+        padding: 1.5rem;
+    }
+
+    .modal-box h2 {
+        font-size: 1rem;
+    }
+
+    .leaderboard-table {
+        font-size: 0.7rem;
+    }
+}
+
+/* Mobile - Large phones (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+    .top-bar {
+        height: auto;
+        padding: 10px 16px;
+    }
+
+    .title-box h1 {
+        font-size: 1.3rem;
+    }
+
+    .title-box h2 {
+        font-size: 0.7rem;
+    }
+
+    .battle-scene {
+        height: 40vh;
+    }
+
+    #alienShipWrapper {
+        left: 6%;
+        transform: translateY(-50%) scale(0.8);
+    }
+
+    #earthWrapper {
+        right: 6%;
+        transform: translateY(-50%) scale(0.8);
+    }
+
+    #alienCanvas {
+        width: 128px;
+        height: 128px;
+    }
+
+    #earthCanvas {
+        width: 160px;
+        height: 160px;
+    }
+
+    .question-area {
+        height: 60vh;
+    }
+
+    .question-box {
+        width: 90%;
+        padding: 18px;
+    }
+
+    .question-box h2 {
+        font-size: 1rem;
+    }
+
+    .answers {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .answer-btn {
+        padding: 12px 10px;
+        font-size: 0.8rem;
+    }
+
+    .diff-box {
+        padding: 2.5rem 2rem;
+    }
+
+    .diff-box h1 {
+        font-size: 1.7rem;
+    }
+
+    .diff-buttons {
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .modal-box {
+        width: 85%;
+        padding: 1.8rem;
+    }
+}
+
+/* Tablet (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .top-bar {
+        padding: 12px 20px;
+    }
+
+    .title-box h1 {
+        font-size: 1.4rem;
+    }
+
+    .battle-scene {
+        height: 45vh;
+    }
+
+    #alienShipWrapper {
+        left: 7%;
+        transform: translateY(-50%) scale(0.9);
+    }
+
+    #earthWrapper {
+        right: 7%;
+        transform: translateY(-50%) scale(0.9);
+    }
+
+    #alienCanvas {
+        width: 144px;
+        height: 144px;
+    }
+
+    #earthCanvas {
+        width: 180px;
+        height: 180px;
+    }
+
+    .question-area {
+        height: 55vh;
+    }
+
+    .question-box {
+        width: 75%;
+        padding: 20px;
+    }
+
+    .question-box h2 {
+        font-size: 1.05rem;
+    }
+
+    .answers {
+        gap: 12px;
+    }
+
+    .answer-btn {
+        padding: 12px 12px;
+        font-size: 0.8rem;
+    }
+
+    .diff-box {
+        padding: 3rem 3.5rem;
+    }
+
+    .diff-box h1 {
+        font-size: 1.8rem;
+    }
+
+    .modal-box {
+        width: 380px;
+    }
+}
+
+/* Small laptops (1025px - 1366px) */
+@media (min-width: 1025px) and (max-width: 1366px) {
+    .battle-scene {
+        height: 48vh;
+    }
+
+    #alienShipWrapper {
+        left: 7%;
+    }
+
+    #earthWrapper {
+        right: 7%;
+    }
+
+    .question-box {
+        width: 60%;
+    }
+}
+
+/* Prevent horizontal scroll on all devices */
+body {
+    overflow-x: hidden;
+}
+
+/* Ensure canvas elements don't overflow */
+#alienCanvas, #earthCanvas {
+    max-width: 100%;
+    height: auto;
 }
