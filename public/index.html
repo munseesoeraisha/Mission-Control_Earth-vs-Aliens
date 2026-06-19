@@ -9,17 +9,9 @@
     <link rel="stylesheet" href="public/css/responsive.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
-    <div class="crt-screen-overlay"></div>
     <canvas id="bgCanvas"></canvas>
-
-    <!-- Global Sound Controls -->
-    <div id="soundControlPanel" class="sound-panel">
-        <button id="muteBtn" onclick="toggleMute()" title="Toggle Mute">🔊</button>
-        <input id="volumeSlider" type="range" min="0" max="100" value="60" oninput="changeVolume(this.value)" title="Adjust Volume" />
-    </div>
 
     <!-- Difficulty Screen -->
     <div id="difficultyScreen" class="diff-screen">
@@ -65,12 +57,6 @@
         </div>
     </div>
 
-    <!-- Tactical Terminal Console -->
-    <div class="tactical-terminal" id="tacticalTerminal" style="display:none">
-        <div class="term-line sys">[SYSTEM] TACTICAL COMP LINK DETECTED...</div>
-        <div class="term-line info">[INFO] Earth Defense Systems: Standby</div>
-    </div>
-
     <div id="victoryParticles"></div>
 
     <!-- Question Box -->
@@ -78,10 +64,6 @@
         <div class="question-box">
             <div class="question-header">
                 <span class="question-number" id="questionNum">01 / 08</span>
-                <div class="powerups-container" id="powerupsContainer" style="display: none;">
-                    <button class="powerup-btn" id="btnShieldRestore" onclick="usePowerUp('shieldRestore')" disabled>🛡️ Shield Boost (0)</button>
-                    <button class="powerup-btn" id="btnFreezeTime" onclick="usePowerUp('freezeTime')" disabled>⏳ Freeze Time (0)</button>
-                </div>
                 <div class="timer-wrap">
                     <div class="timer-bar" id="timerBar"></div>
                     <span class="timer-text" id="timerText">15</span>

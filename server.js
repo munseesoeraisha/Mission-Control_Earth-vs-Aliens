@@ -17,10 +17,6 @@ const scoreRoutes = require("./routes/scoreRoutes");
 app.use("/api/auth", authRoutes);
 app.use("/api/scores", scoreRoutes);
 
-app.get("/api/config", (req, res) => {
-    res.json({ googleClientId: process.env.GOOGLE_CLIENT_ID || "" });
-});
-
 /* Homepage */
 
 app.get("/", (req, res) => {

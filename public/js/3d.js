@@ -23,44 +23,6 @@
     const stars = new THREE.Points(starGeo, starMat);
     scene.add(stars);
 
-    // Multi-layered colorful cosmic nebula dust
-    const nebGeo = new THREE.BufferGeometry();
-    const nebCount = 250;
-    const nebPositions = new Float32Array(nebCount * 3);
-    const nebColors = new Float32Array(nebCount * 3);
-    for (let i = 0; i < nebCount * 3; i += 3) {
-        nebPositions[i] = (Math.random() - 0.5) * 160;
-        nebPositions[i+1] = (Math.random() - 0.5) * 100;
-        nebPositions[i+2] = (Math.random() - 0.5) * 60 - 30;
-        
-        // Soft sci-fi neon colors (cyan, magenta, purple)
-        const rand = Math.random();
-        if (rand < 0.33) {
-            nebColors[i] = 0.0;     // R
-            nebColors[i+1] = 0.8;   // G
-            nebColors[i+2] = 0.9;   // B (Cyan)
-        } else if (rand < 0.66) {
-            nebColors[i] = 0.9;     // R
-            nebColors[i+1] = 0.0;   // G
-            nebColors[i+2] = 0.8;   // B (Magenta)
-        } else {
-            nebColors[i] = 0.5;     // R
-            nebColors[i+1] = 0.2;   // G
-            nebColors[i+2] = 0.9;   // B (Purple)
-        }
-    }
-    nebGeo.setAttribute("position", new THREE.BufferAttribute(nebPositions, 3));
-    nebGeo.setAttribute("color", new THREE.BufferAttribute(nebColors, 3));
-    const nebMat = new THREE.PointsMaterial({
-        size: 1.8,
-        vertexColors: true,
-        transparent: true,
-        opacity: 0.35,
-        blending: THREE.AdditiveBlending
-    });
-    const nebParticles = new THREE.Points(nebGeo, nebMat);
-    scene.add(nebParticles);
-
     const shootingStars = [];
     function createShootingStar() {
         const geo = new THREE.BufferGeometry();
@@ -83,34 +45,11 @@
         camera.updateProjectionMatrix();
     });
 
-    let starSpeedMultiplier = 1.0;
-    window.triggerWarpSpeed = function() {
-        let t = 0;
-        const interval = setInterval(() => {
-            if (t < 15) {
-                starSpeedMultiplier = 1.0 + t * 4.0;
-            } else {
-                starSpeedMultiplier = Math.max(1.0, 61.0 - (t - 15) * 2.0);
-            }
-            t++;
-            if (t > 45) {
-                starSpeedMultiplier = 1.0;
-                clearInterval(interval);
-            }
-        }, 16);
-    };
-
     function animate() {
         requestAnimationFrame(animate);
-        stars.rotation.y += 0.0003 * starSpeedMultiplier;
-        stars.rotation.x += 0.0001 * starSpeedMultiplier;
-        nebParticles.rotation.y -= 0.0001 * starSpeedMultiplier;
-        nebParticles.rotation.z += 0.00015 * starSpeedMultiplier;
-        shootingStars.forEach(s => { 
-            const speedMult = starSpeedMultiplier > 1.0 ? 3.0 : 1.0;
-            s.position.x += s.userData.speed * speedMult; 
-            s.position.y -= s.userData.speed * 0.3 * speedMult; 
-        });
+        stars.rotation.y += 0.0003;
+        stars.rotation.x += 0.0001;
+        shootingStars.forEach(s => { s.position.x += s.userData.speed; s.position.y -= s.userData.speed * 0.3; });
         renderer.render(scene, camera);
     }
     animate();
@@ -247,13 +186,6 @@
     beam.position.y = -1.2;
     ship.add(beam);
 
-    // Premium outer sensory sensor ring
-    const sensorRingGeo = new THREE.TorusGeometry(1.4, 0.02, 8, 48);
-    const sensorRingMat = new THREE.MeshBasicMaterial({ color: 0xff00ff, transparent: true, opacity: 0.65 });
-    const sensorRing = new THREE.Mesh(sensorRingGeo, sensorRingMat);
-    sensorRing.rotation.x = Math.PI / 2;
-    ship.add(sensorRing);
-
     scene.add(ship);
 
     // X movement: positive = right (toward earth), negative = left (away from earth)
@@ -273,8 +205,6 @@
         ship.position.x = window.alienShipX;
         ship.position.y = Math.sin(time) * 0.15;
         ship.rotation.y += 0.01;
-        sensorRing.rotation.z -= 0.035;
-        sensorRing.position.y = Math.sin(time * 3) * 0.04;
         glow.material.opacity = 0.3 + Math.sin(time * 4) * 0.2;
         renderer.render(scene, camera);
     }

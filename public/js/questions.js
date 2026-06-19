@@ -39,19 +39,6 @@ const questions = [
 { question: "Which law describes the relationship between a galaxy's distance and its recessional velocity?", answers: ["Kepler's Third Law", "Hubble's Law", "Newton's Law", "Planck's Law"], correct: 1, difficulty: "hard" },
 { question: "What is the estimated temperature at the surface of the Sun?", answers: ["1,000°C", "5,500°C", "50,000°C", "500,000°C"], correct: 1, difficulty: "hard" },
 { question: "What is the name of the theoretical boundary surrounding a black hole?", answers: ["Event Horizon", "Schwarzschild Ring", "Gravity Shell", "Photon Belt"], correct: 0, difficulty: "hard" },
-    // NEW QUESTIONS
-    { question: "What is the smallest planet in our solar system?", answers: ["Mercury", "Mars", "Venus", "Pluto"], correct: 0, difficulty: "easy" },
-    { question: "Which planet is known for its prominent red spot?", answers: ["Jupiter", "Saturn", "Mars", "Neptune"], correct: 0, difficulty: "easy" },
-    { question: "What gas makes up most of Earth's atmosphere?", answers: ["Oxygen", "Nitrogen", "Carbon Dioxide", "Helium"], correct: 1, difficulty: "easy" },
-
-    { question: "What is the name of the first space station launched by the United States?", answers: ["Skylab", "Mir", "ISS", "Tiangong"], correct: 0, difficulty: "medium" },
-    { question: "Which planet has a day longer than its year?", answers: ["Venus", "Mars", "Mercury", "Jupiter"], correct: 0, difficulty: "medium" },
-    { question: "What is the name of the telescope that discovered the first exoplanets?", answers: ["Kepler", "Hubble", "Spitzer", "Gaia"], correct: 0, difficulty: "medium" },
-
-    { question: "What is the term for a region of space where gravity is so strong that nothing, not even light, can escape?", answers: ["Event Horizon", "Singularity", "Black Hole", "Dark Matter"], correct: 0, difficulty: "hard" },
-    { question: "Which element is the most abundant in the universe by mass?", answers: ["Hydrogen", "Helium", "Oxygen", "Carbon"], correct: 0, difficulty: "hard" },
-    { question: "What is the name of the theoretical particle that mediates the force of gravity?", answers: ["Graviton", "Photon", "Gluon", "W boson"], correct: 0, difficulty: "hard" },
-    { question: "What is the name given to the hypothetical end state of the universe where it reaches maximum entropy?", answers: ["Heat Death", "Big Crunch", "Big Rip", "Steady State"], correct: 0, difficulty: "hard" },
 ];
 
 let selectedQuestions = [];
