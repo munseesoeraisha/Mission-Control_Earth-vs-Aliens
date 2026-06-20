@@ -141,3 +141,101 @@ function fireAlienMissile(onImpact) {
 function fireWeapon(onImpact) {
     fireAlienMissile(onImpact);
 }
+
+// =====================
+// EARTH LASER - fires on correct answer
+// =====================
+function fireEarthLaser(onImpact) {
+    const battleScene = document.getElementById("battleScene");
+    const alienWrapper = document.getElementById("alienShipWrapper");
+    const earthWrapper = document.getElementById("earthWrapper");
+
+    if (!battleScene || !alienWrapper || !earthWrapper) {
+        if (onImpact) onImpact();
+        return;
+    }
+
+    const alienRect = alienWrapper.getBoundingClientRect();
+    const earthRect = earthWrapper.getBoundingClientRect();
+    const sceneRect = battleScene.getBoundingClientRect();
+
+    const startX = earthRect.left - sceneRect.left + 20;
+    const startY = earthRect.top + earthRect.height / 2 - sceneRect.top;
+    const endX = alienRect.right - sceneRect.left - 20;
+    const endY = alienRect.top + alienRect.height / 2 - sceneRect.top;
+
+    const dx = endX - startX;
+    const dy = endY - startY;
+    const length = Math.sqrt(dx * dx + dy * dy);
+    const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+
+    if (!document.getElementById("laserStyle")) {
+        const style = document.createElement("style");
+        style.id = "laserStyle";
+        style.textContent = `
+            @keyframes chargeFlash {
+                0%   { transform: scale(0.2); opacity: 1; }
+                100% { transform: scale(2);   opacity: 0; }
+            }
+            @keyframes beamFade {
+                0%   { opacity: 1; }
+                100% { opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
+    const charge = document.createElement("div");
+    charge.style.cssText = `
+        position:absolute;
+        left:${startX - 20}px;
+        top:${startY - 20}px;
+        width:40px; height:40px;
+        border-radius:50%;
+        background:radial-gradient(circle, #ffffff 0%, #00ffcc 40%, transparent 75%);
+        z-index:22; pointer-events:none;
+        animation: chargeFlash 0.3s ease-out forwards;
+    `;
+    battleScene.appendChild(charge);
+
+    setTimeout(() => {
+        charge.remove();
+
+        const beam = document.createElement("div");
+        beam.style.cssText = `
+            position:absolute;
+            left:${startX}px;
+            top:${startY - 4}px;
+            width:${length}px;
+            height:8px;
+            background:linear-gradient(to right, #ffffff, #00ffcc, #00ff88);
+            border-radius:4px;
+            box-shadow: 0 0 12px #00ffcc, 0 0 24px #00ffaa;
+            transform-origin: left center;
+            transform: rotate(${angle}deg);
+            z-index:23; pointer-events:none;
+            animation: beamFade 0.3s ease-out forwards;
+        `;
+        battleScene.appendChild(beam);
+
+        const impact = document.createElement("div");
+        impact.style.cssText = `
+            position:absolute;
+            left:${endX - 30}px;
+            top:${endY - 30}px;
+            width:60px; height:60px;
+            border-radius:50%;
+            background:radial-gradient(circle, #ffffff 0%, #00ffcc 35%, #00ff88 60%, transparent 100%);
+            z-index:26; pointer-events:none;
+            animation: beamFade 0.4s ease-out forwards;
+        `;
+        battleScene.appendChild(impact);
+
+        setTimeout(() => {
+            beam.remove();
+            impact.remove();
+            if (onImpact) onImpact();
+        }, 350);
+
+    }, 300);
+}
