@@ -105,16 +105,17 @@ function checkAnswer(selectedIndex) {
         document.getElementById("alienShipWrapper").style.left = alienLeft + "%";
         answerButtons[selectedIndex].classList.add("correct");
         playSound("correct");
-        document.getElementById("earthCanvas").style.filter = "drop-shadow(0 0 30px #00ffcc) drop-shadow(0 0 60px #00ffcc)";
-        setTimeout(() => { document.getElementById("earthCanvas").style.filter = "drop-shadow(0 0 25px rgba(30,144,255,0.7))"; }, 700);
         updateHUD();
 
-        setTimeout(() => {
-            answerButtons.forEach(b => { b.disabled = false; b.classList.remove("correct", "wrong"); });
-            currentQuestion++;
-            if (currentQuestion < window.questions.length) { loadQuestion(); startTimer(); }
-            else { endGame(); }
-        }, 1800);
+        // Fire Earth laser at the alien ship
+        fireEarthLaser(() => {
+            setTimeout(() => {
+                answerButtons.forEach(b => { b.disabled = false; b.classList.remove("correct", "wrong"); });
+                currentQuestion++;
+                if (currentQuestion < window.questions.length) { loadQuestion(); startTimer(); }
+                else { endGame(); }
+            }, 400);
+        });
     } else {
         alienLeft = Math.min(68, alienLeft + 10);
         document.getElementById("alienShipWrapper").style.left = alienLeft + "%";
